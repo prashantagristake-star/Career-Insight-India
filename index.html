@@ -1083,8 +1083,6 @@ function backToJobs() {
   }
 
 }
-
-
 <!-- LIVE VISITOR COUNT + COMMENTS -->
 <section id="community-section">
   <h2>🌍 CG Tourism Guide Community</h2>
@@ -1158,57 +1156,65 @@ function backToJobs() {
   border-radius: 8px;
   cursor: pointer;
 }
+.comment-box button:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}
 .comment-item {
   background: white;
   padding: 12px;
   margin: 10px 0;
   border-radius: 8px;
   overflow-wrap: anywhere;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 .comment-item strong {
   color: #163c32;
 }
 .comment-item p {
-  margin-bottom: 0;
+  margin: 5px 0 0 0;
 }
 </style>
 
+<!-- Firebase Scripts (Compat Version 10) -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
 const firebaseConfig = {
-  apiKey: "अपनी_API_KEY",
-  authDomain: "अपना_PROJECT.firebaseapp.com",
-  databaseURL: "अपना_DATABASE_URL",
-  projectId: "अपना_PROJECT_ID",
-  storageBucket: "अपना_PROJECT.appspot.com",
-  messagingSenderId: "अपना_SENDER_ID",
-  appId: "अपना_APP_ID"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database();
 
 firebase.auth().signInAnonymously()
 .then(() => {
 
-  // VISITOR COUNT
+  // 1. VISITOR COUNT LOGIC
   const countRef = db.ref("websiteStats/totalVisits");
-
   countRef.transaction(current => (current || 0) + 1);
 
   countRef.on("value", snapshot => {
-    document.getElementById("visitorCount").textContent =
-      snapshot.val() || 0;
+    document.getElementById("visitorCount").textContent = snapshot.val() || 0;
   });
 
-  // POST COMMENT
-  document.getElementById("sendComment").onclick = async () => {
-    const name = document.getElementById("commentName").value.trim();
-    const message = document.getElementById("commentText").value.trim();
+  // 2. POST COMMENT LOGIC
+  const sendBtn = document.getElementById("sendComment");
+  sendBtn.onclick = async () => {
+    const nameInput = document.getElementById("commentName");
+    const textInput = document.getElementById("commentText");
+    
+    const name = nameInput.value.trim();
+    const message = textInput.value.trim();
 
     if (!name || !message) {
       alert("कृपया नाम और कमेंट दोनों लिखें।");
@@ -1216,24 +1222,40 @@ firebase.auth().signInAnonymously()
     }
 
     if (name.length > 40 || message.length > 500) {
-      alert("कमेंट की सीमा से अधिक टेक्स्ट है।");
+      alert("कमेंट या नाम तय सीमा से अधिक लंबा है।");
       return;
     }
 
-    await db.ref("comments").push({
-      name: name,
-      message: message,
-      time: firebase.database.ServerValue.TIMESTAMP
-    });
+    try {
+      sendBtn.disabled = true;
+      sendBtn.textContent = "पोस्ट हो रहा है...";
 
-    document.getElementById("commentText").value = "";
-    alert("आपका कमेंट पोस्ट हो गया!");
+      await db.ref("comments").push({
+        name: name,
+        message: message,
+        time: firebase.database.ServerValue.TIMESTAMP
+      });
+
+      textInput.value = "";
+      alert("आपका कमेंट सफलतापूर्वक post हो गया!");
+    } catch (error) {
+      console.error("Error posting comment:", error);
+      alert("कमेंट पोस्ट करने में त्रुटि हुई।");
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Comment पोस्ट करें";
+    }
   };
 
-  // SHOW COMMENTS
+  // 3. SHOW COMMENTS LOGIC
   db.ref("comments").limitToLast(50).on("value", snapshot => {
     const list = document.getElementById("commentsList");
     list.innerHTML = "";
+
+    if (!snapshot.exists()) {
+      list.innerHTML = "<p>Abhi tak koi comment nahi hai. Aap pehla comment likhein!</p>";
+      return;
+    }
 
     snapshot.forEach(item => {
       const data = item.val();
@@ -1254,12 +1276,14 @@ firebase.auth().signInAnonymously()
 
 })
 .catch(error => {
-  console.error("Firebase Error:", error);
+  console.error("Firebase Auth Error:", error);
   document.getElementById("visitorCount").textContent = "Unavailable";
-  document.getElementById("commentsList").textContent =
-    "कमेंट अभी लोड नहीं हो सके।";
+  document.getElementById("commentsList").textContent = "कमेंट लोड करने में असमर्थ। Firebase Configuration जांचें।";
 });
 </script>
+
+
+
 </body>
   </html>
 
