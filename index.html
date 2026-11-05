@@ -1084,8 +1084,182 @@ function backToJobs() {
 
 }
 
-</script>
 
+<!-- LIVE VISITOR COUNT + COMMENTS -->
+<section id="community-section">
+  <h2>🌍 CG Tourism Guide Community</h2>
+
+  <div class="visitor-box">
+    <span>👁️ Total Website Visits</span>
+    <strong id="visitorCount">Loading...</strong>
+  </div>
+
+  <div class="comment-box">
+    <h3>💬 अपना अनुभव साझा करें</h3>
+
+    <input id="commentName"
+      type="text"
+      placeholder="आपका नाम"
+      maxlength="40">
+
+    <textarea id="commentText"
+      placeholder="अपना कमेंट लिखें..."
+      maxlength="500"></textarea>
+
+    <button id="sendComment">Comment पोस्ट करें</button>
+
+    <h3>सभी कमेंट</h3>
+    <div id="commentsList">Loading comments...</div>
+  </div>
+</section>
+
+<style>
+#community-section {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f4f8f5;
+  border-radius: 14px;
+  color: #163c32;
+  font-family: Arial, sans-serif;
+}
+.visitor-box {
+  background: #163c32;
+  color: white;
+  padding: 18px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.visitor-box strong {
+  font-size: 24px;
+}
+.comment-box input,
+.comment-box textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.comment-box textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+.comment-box button {
+  background: #163c32;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.comment-item {
+  background: white;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+.comment-item strong {
+  color: #163c32;
+}
+.comment-item p {
+  margin-bottom: 0;
+}
+</style>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "अपनी_API_KEY",
+  authDomain: "अपना_PROJECT.firebaseapp.com",
+  databaseURL: "अपना_DATABASE_URL",
+  projectId: "अपना_PROJECT_ID",
+  storageBucket: "अपना_PROJECT.appspot.com",
+  messagingSenderId: "अपना_SENDER_ID",
+  appId: "अपना_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+firebase.auth().signInAnonymously()
+.then(() => {
+
+  // VISITOR COUNT
+  const countRef = db.ref("websiteStats/totalVisits");
+
+  countRef.transaction(current => (current || 0) + 1);
+
+  countRef.on("value", snapshot => {
+    document.getElementById("visitorCount").textContent =
+      snapshot.val() || 0;
+  });
+
+  // POST COMMENT
+  document.getElementById("sendComment").onclick = async () => {
+    const name = document.getElementById("commentName").value.trim();
+    const message = document.getElementById("commentText").value.trim();
+
+    if (!name || !message) {
+      alert("कृपया नाम और कमेंट दोनों लिखें।");
+      return;
+    }
+
+    if (name.length > 40 || message.length > 500) {
+      alert("कमेंट की सीमा से अधिक टेक्स्ट है।");
+      return;
+    }
+
+    await db.ref("comments").push({
+      name: name,
+      message: message,
+      time: firebase.database.ServerValue.TIMESTAMP
+    });
+
+    document.getElementById("commentText").value = "";
+    alert("आपका कमेंट पोस्ट हो गया!");
+  };
+
+  // SHOW COMMENTS
+  db.ref("comments").limitToLast(50).on("value", snapshot => {
+    const list = document.getElementById("commentsList");
+    list.innerHTML = "";
+
+    snapshot.forEach(item => {
+      const data = item.val();
+
+      const card = document.createElement("div");
+      card.className = "comment-item";
+
+      const author = document.createElement("strong");
+      author.textContent = data.name || "Visitor";
+
+      const message = document.createElement("p");
+      message.textContent = data.message || "";
+
+      card.append(author, message);
+      list.prepend(card);
+    });
+  });
+
+})
+.catch(error => {
+  console.error("Firebase Error:", error);
+  document.getElementById("visitorCount").textContent = "Unavailable";
+  document.getElementById("commentsList").textContent =
+    "कमेंट अभी लोड नहीं हो सके।";
+});
+</script>
 </body>
   </html>
 
