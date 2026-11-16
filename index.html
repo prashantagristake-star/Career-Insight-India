@@ -696,59 +696,173 @@ footer strong {
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
-/* JOB DATA */
+/* COMPLETE JOB DATA */
 const jobs = {
   government: [
     {
-      name: "Patwari",
-      type: "Revenue Department",
-      intro: "पटवारी राजस्व विभाग का एक पद है, जो अपने निर्धारित क्षेत्र में भूमि और राजस्व अभिलेखों से जुड़े कार्य करता है।",
-      work: [
-        "भूमि अभिलेखों से संबंधित कार्य।",
-        "जमीन के रिकॉर्ड और संबंधित विवरणों का रखरखाव।",
-        "नामांतरण और भूमि संबंधी प्रक्रियाओं में निर्धारित भूमिका।",
-        "फील्ड में भूमि और फसल संबंधी जानकारी का संकलन।",
-        "विभागीय निर्देशों के अनुसार रिपोर्ट तैयार करना।"
-      ],
-      skills: ["Computer Knowledge", "Record Management", "Basic Land Revenue Knowledge", "Communication Skills"],
-      workplace: "कार्यालय और निर्धारित राजस्व क्षेत्र।",
-      recruitment: "भर्ती, योग्यता, चयन प्रक्रिया और वेतन राज्य के नियमों तथा संबंधित भर्ती विज्ञापन पर निर्भर करते हैं।"
-    },
-    {
-      name: "Railway Technician",
+      name: "RRB NTPC (Station Master, Guard, Clerk)",
       type: "Indian Railways",
-      intro: "रेलवे टेक्नीशियन तकनीकी विभाग में उपकरणों, मशीनों और संबंधित सिस्टम के रखरखाव तथा जांच का कार्य करता है।",
+      department: "भारतीय रेलवे (Ministry of Railways) के कमर्शियल, ऑपरेटिंग और अकाउंट्स विभाग।",
+      intro: "RRB NTPC के अंतर्गत रेलवे के गैर-तकनीकी पदों जैसे स्टेशन मास्टर, गुड्स ट्रेन मैनेजर (गार्ड) और क्लर्क की भर्ती होती है, जो ट्रेन संचालन और प्रशासन संभालते हैं।",
       work: [
-        "निर्धारित उपकरणों और मशीनों की जांच।",
-        "तकनीकी खराबियों की पहचान।",
-        "रखरखाव और मरम्मत में सहयोग।",
-        "सुरक्षा और तकनीकी मानकों का पालन।",
-        "कार्य पूरा होने पर जांच और रिपोर्टिंग।"
+        "Station Master: ट्रेनों के आवागमन (Movement) को कंट्रोल करना, सिग्नल और ट्रैक की सुरक्षा देखना।",
+        "Goods Train Manager (Guard): मालगाड़ी के सुरक्षित संचालन और वैगनों की चेकिंग की जिम्मेदारी।",
+        "Clerk / Typist: ऑफिस के रिकॉर्ड, टिकट बुकिंग डेटा और फाइलों का रखरखाव।"
       ],
-      skills: ["Basic Electrical Knowledge", "Mechanical Knowledge", "Tool Handling", "Safety Awareness"],
-      workplace: "रेलवे वर्कशॉप, डिपो या संबंधित तकनीकी कार्यस्थल।",
-      recruitment: "पद के अनुसार RRB की भर्ती सूचना, योग्यता, चयन प्रक्रिया और वेतन अलग हो सकते हैं।"
+      skills: ["Decision Making", "Communication Skills", "Computer & Typing", "Alertness & Time Management"],
+      workplace: "स्टेशन मास्टर व गार्ड के लिए रेलवे स्टेशन/ट्रेन (शिफ्ट और ऑपरेशनल ड्यूटी); क्लर्क के लिए रेलवे ऑफिस (डेस्क जॉब)।",
+      salary: "शुरुआती बेसिक सैलरी ₹19,900 से ₹35,400 (7th Pay Commission)। भत्ते (DA, HRA, TA) मिलाकर इन-हैंड सैलरी लगभग ₹30,000 से ₹55,000+ प्रति माह।",
+      leaves: "साल में 30 Earned Leave (EL), 12 Casual Leave (CL), और Medical Leave। साथ ही पूरे परिवार के लिए मुफ्त/रियायती रेलवे यात्रा पास (PTO)।",
+      recruitment: "योग्यता: 12वीं पास (अंडरग्रेजुएट पद) और ग्रेजुएशन (ग्रेजुएट पद)। चयन: CBT-1, CBT-2, टाइपिंग/CBAT टेस्ट और मेडिकल।"
     },
     {
-      name: "Bank Clerk",
-      type: "Banking Sector",
-      intro: "बैंक क्लर्क बैंक की शाखा में ग्राहकों और बैंकिंग लेनदेन से जुड़े नियमित कार्यों को संभालता है।",
+      name: "RRB Group D (Track Maintainer, Helper)",
+      type: "Indian Railways (Level-1)",
+      department: "भारतीय रेलवे के इंजीनियरिंग, इलेक्ट्रिकल, मैकेनिकल और सिग्नल एंड टेलीकॉम विभाग।",
+      intro: "रेलवे Group D के कर्मचारी रेलवे ट्रैक की सुरक्षा, मरम्मत और वर्कशॉप में तकनीकी सहायकों की मदद करने का जमीनी कार्य करते हैं।",
       work: [
-        "ग्राहकों को बैंकिंग सेवाओं में सहायता।",
-        "खाता और दस्तावेज संबंधी कार्य।",
-        "बैंकिंग रिकॉर्ड का रखरखाव।",
-        "नियमों के अनुसार लेनदेन संबंधी कार्य।",
-        "ग्राहकों की सामान्य समस्याओं में सहायता।"
+        "Track Maintainer: रेलवे पटरियों (Tracks) की नियमित जांच, रखरखाव और मरम्मत करना।",
+        "Helper / Assistant: रेलवे वर्कशॉप और यार्ड में तकनीकी कर्मचारियों की सहायता और मशीनों की देखरेख।",
+        "Pointsman: रेलवे यार्ड में शंटिंग और सिग्नल पॉइंट्स को संभालने में मदद करना।"
       ],
-      skills: ["Computer Knowledge", "Basic Mathematics", "Communication Skills", "Banking Awareness"],
-      workplace: "बैंक शाखा और निर्धारित बैंकिंग कार्यस्थल।",
-      recruitment: "बैंक और भर्ती संस्था के अनुसार योग्यता, परीक्षा, वेतन तथा चयन प्रक्रिया अलग हो सकती है।"
+      skills: ["Physical Fitness", "Teamwork", "Basic Technical Awareness", "Safety Rules Compliance"],
+      workplace: "पूरी तरह फील्ड वर्क / फिजिकल वर्क — रेलवे ट्रैक, स्टेशन यार्ड या रेलवे वर्कशॉप में।",
+      salary: "शुरुआती बेसिक सैलरी ₹18,000। भत्तों (DA, HRA, नाइट ड्यूटी अलाउंस आदि) के साथ इन-हैंड सैलरी लगभग ₹25,000 से ₹30,000 प्रति माह।",
+      leaves: "साल में 30 EL, 12 CL, मेडिकल अवकाश और परिवार के लिए रेलवे यात्रा पास की सुविधा।",
+      recruitment: "योग्यता: 10वीं पास या ITI (पद अनुसार)। चयन: कंप्यूटर आधारित परीक्षा (CBT), शारीरिक दक्षता परीक्षा (PET - दौड़/वजन उठाना) और मेडिकल।"
+    },
+    {
+      name: "SSC CGL (Inspector, ASO, Auditor)",
+      type: "Central Govt (Group B & C)",
+      department: "केंद्र सरकार के प्रमुख मंत्रालय और विभाग (Income Tax, Customs, CBI, ED, केंद्रीय सचिवालय आदि)।",
+      intro: "SSC CGL देश की सबसे प्रतिष्ठित ग्रेजुएट स्तरीय परीक्षा है, जिसके माध्यम से केंद्रीय मंत्रालयों में अधिकारी और इंस्पेक्टर नियुक्त किए जाते हैं।",
+      work: [
+        "Assistant Section Officer (ASO): मंत्रालयों में नीतियों की फाइलें तैयार करना, पत्राचार और प्रशासनिक कार्य।",
+        "Income Tax / GST Inspector: टैक्स असेसमेंट करना, टैक्स चोरी की जांच और छापेमारी (Raid) टीम का हिस्सा बनना।",
+        "Auditor / Accountant: सरकारी विभागों के खातों और खर्चों का ऑडिट करना।"
+      ],
+      skills: ["Analytical Thinking", "MS Office & Data Analysis", "Drafting & Noting", "Legal & Tax Awareness"],
+      workplace: "ASO और Auditor के लिए पूरी तरह ऑफिस/डेस्क जॉब; Inspector (CBI, Customs, IT) के लिए ऑफिस और फील्ड वर्क दोनों।",
+      salary: "पद के अनुसार शुरुआती इन-हैंड सैलरी लगभग ₹60,000 से ₹85,000+ प्रति माह (शहर की श्रेणी के अनुसार)।",
+      leaves: "साल में 30 EL, 8 CL, राजपत्रित छुट्टियां, और मंत्रालयों में अधिकतर शनिवार-रविवार का साप्ताहिक अवकाश।",
+      recruitment: "योग्यता: किसी भी विषय में स्नातक (Graduation)। चयन: Tier-1, Tier-2 (CBT + कंप्यूटर/टाइपिंग टेस्ट) और डॉक्यूमेंट वेरिफिकेशन।"
+    },
+    {
+      name: "SSC CHSL (LDC, JSA, DEO)",
+      type: "Central Govt (12th Level)",
+      department: "केंद्र सरकार के विभिन्न मंत्रालय, सरकारी कार्यालय और संवैधानिक निकाय।",
+      intro: "12वीं पास युवाओं के लिए केंद्र सरकार के दफ्तरों में क्लर्क और डेटा एंट्री ऑपरेटर के रूप में काम करने का बेहतरीन अवसर।",
+      work: [
+        "LDC / JSA: ऑफिस की फाइलों का रखरखाव, डाक/ईमेल का जवाब देना और क्लर्क संबंधी कार्य।",
+        "Data Entry Operator (DEO): सरकारी डेटा को कंप्यूटर सिस्टम में दर्ज करना और रिपोर्ट तैयार करना।",
+        "कार्यालय के दैनिक प्रशासनिक कार्यों में वरिष्ठ अधिकारियों की सहायता करना।"
+      ],
+      skills: ["Fast Typing (Hindi/English)", "MS Word & Excel", "File Management", "Basic Computer Knowledge"],
+      workplace: "पूरी तरह इनडोर / ऑफिस डेस्क जॉब (केंद्रीय सरकारी दफ्तरों में)।",
+      salary: "शुरुआती इन-हैंड सैलरी लगभग ₹32,000 से ₹45,000 प्रति माह (पद और शहर के हिसाब से)।",
+      leaves: "साल में 30 EL, 8 CL, सभी राष्ट्रीय अवकाश और अधिकतर कार्यालयों में शनिवार-रविवार की छुट्टी।",
+      recruitment: "योग्यता: 12वीं पास। चयन: Tier-1 (CBT), Tier-2 (CBT + टाइपिंग/स्किल टेस्ट) और डॉक्यूमेंट वेरिफिकेशन।"
+    },
+    {
+      name: "SSC GD Constable (BSF, CISF, CRPF)",
+      type: "Paramilitary Forces (MHA)",
+      department: "गृह मंत्रालय (Ministry of Home Affairs) के अधीन अर्धसैनिक बल — BSF, CISF, CRPF, SSB, ITBP, Assam Rifles।",
+      intro: "SSC GD के माध्यम से देश की सीमाओं, सरकारी संस्थानों और आंतरिक सुरक्षा के लिए जवानों (Constable) की भर्ती की जाती है।",
+      work: [
+        "देश की अंतरराष्ट्रीय सीमाओं (पाकिस्तान, बांग्लादेश, चीन सीमा) की रक्षा और गश्त करना (BSF, ITBP, SSB)।",
+        "एयरपोर्ट, मेट्रो, और बड़े सरकारी उद्योगों की सुरक्षा करना (CISF)।",
+        "देश के भीतर कानून-व्यवस्था और शांति बनाए रखने में सहायता करना (CRPF)।"
+      ],
+      skills: ["High Physical Fitness", "Discipline & Courage", "Weapon Handling (ट्रेनिंग के बाद)", "Team Coordination"],
+      workplace: "100% फील्ड वर्क — बॉर्डर पोस्ट, एयरपोर्ट, औद्योगिक इकाई या संवेदनशील क्षेत्रों में शिफ्ट ड्यूटी।",
+      salary: "शुरुआती बेसिक सैलरी ₹21,700। भत्ते और रिस्क अलाउंस मिलाकर इन-हैंड सैलरी ₹30,000 से ₹40,000+ प्रति माह।",
+      leaves: "बल के नियमों के अनुसार साल में लगभग 60 दिन की Earned Leave (EL) और 15 दिन की Casual Leave (CL) मिलती है।",
+      recruitment: "योग्यता: 10वीं पास। चयन: कंप्यूटर आधारित परीक्षा (CBT), शारीरिक परीक्षण (PET/PST - दौड़, ऊंचाई, सीना) और मेडिकल।"
+    },
+    {
+      name: "SSC MTS & Havaldar",
+      type: "Central Govt (Group C)",
+      department: "केंद्र सरकार के मंत्रालय, विभाग तथा CBIC / CBN (हवलदार पद के लिए)।",
+      intro: "मल्टी टास्किंग स्टाफ (MTS) सरकारी दफ्तरों के सुचारू संचालन में सहयोग करते हैं, जबकि हवलदार कस्टम्स व नारकोटिक्स विभाग में सुरक्षा संभालते हैं।",
+      work: [
+        "MTS: ऑफिस की फाइलें एक कमरे से दूसरे कमरे में पहुंचाना, फोटोकॉपी करना, रिकॉर्ड संभालना और सामान्य रखरखाव।",
+        "Havaldar: कस्टम्स/नारकोटिक्स कार्यालयों की सुरक्षा, गश्त और छापेमारी टीम के साथ सहयोग करना।"
+      ],
+      skills: ["Basic Reading & Writing", "Punctuality", "Basic Computer Awareness", "Physical Fitness (हवलदार हेतु)"],
+      workplace: "MTS के लिए सरकारी कार्यालय (Indoor); हवलदार के लिए कार्यालय व फील्ड ड्यूटी।",
+      salary: "शुरुआती बेसिक सैलरी ₹18,000। भत्तों के साथ इन-हैंड सैलरी लगभग ₹28,000 से ₹34,000 प्रति माह।",
+      leaves: "केंद्रीय नियमों के तहत 30 EL, 8 CL, मेडिकल लीव और शनिवार-रविवार की छुट्टी (MTS ऑफिस जॉब में)।",
+      recruitment: "योग्यता: 10वीं पास। चयन: CBT परीक्षा (हवलदार पद के लिए PET/PST फिजिकल टेस्ट भी अनिवार्य)।"
+    },
+    {
+      name: "IBPS (Bank PO & Clerk)",
+      type: "Public Sector Banks",
+      department: "देश के सार्वजनिक क्षेत्र के राष्ट्रीयकृत बैंक (PNB, Bank of Baroda, Canara Bank, Union Bank आदि)।",
+      intro: "IBPS के माध्यम से सरकारी बैंकों में कस्टमर सर्विस (Clerk) और बैंक प्रबंधन (Probationary Officer) के पदों पर नियुक्ति होती है।",
+      work: [
+        "Bank Clerk: बैंक काउंटर पर नए खाते खोलना, कैश जमा/निकासी, चेक क्लियरेंस और ग्राहकों की समस्याओं का समाधान।",
+        "Bank PO: लोन (Loan) दस्तावेजों की जांच और मंजूरी, शाखा का व्यवसाय बढ़ाना, टीम प्रबंधन और प्रशासनिक निर्णय।"
+      ],
+      skills: ["Customer Handling", "Financial & Banking Knowledge", "Computer Proficiency", "Leadership (PO हेतु)"],
+      workplace: "मुख्यतः बैंक शाखा के अंदर (Indoor Office Job); PO को कभी-कभी लोन रिकवरी या वेरिफिकेशन के लिए फील्ड विजिट करना होता है।",
+      salary: "Clerk: इन-हैंड लगभग ₹35,000 - ₹40,000/माह। PO: इन-हैंड लगभग ₹60,000 - ₹70,000/माह (लीज्ड आवास/HRA व भत्तों सहित)।",
+      leaves: "हर रविवार, महीने का दूसरा और चौथा शनिवार छुट्टी, सभी बैंक अवकाश, और साल में लगभग 12 CL व 30+ Privilege/Sick Leave।",
+      recruitment: "योग्यता: स्नातक (Graduation)। चयन: Clerk के लिए Prelims + Mains; PO के लिए Prelims + Mains + Interview।"
+    },
+    {
+      name: "राज्य पुलिस (Constable & Sub-Inspector)",
+      type: "State Home Department",
+      department: "संबंधित राज्य सरकार के गृह विभाग (State Home Department) के अधीन राज्य पुलिस बल।",
+      intro: "राज्य में कानून-व्यवस्था बनाए रखने, अपराध रोकने और नागरिकों की सुरक्षा सुनिश्चित करने की सबसे महत्वपूर्ण जिम्मेदारी राज्य पुलिस की होती है।",
+      work: [
+        "Police Constable: गश्त (Patrolling) लगाना, ट्रैफिक व भीड़ नियंत्रण, संदिग्धों पर नजर रखना और वरिष्ठ अधिकारियों के आदेशों का पालन।",
+        "Sub-Inspector (SI): पुलिस चौकी/थाने में FIR दर्ज करना, आपराधिक मामलों की जांच (Investigation) करना और कोर्ट में चार्जशीट पेश करना।"
+      ],
+      skills: ["Physical Stamina", "Law & IPC/BNS Knowledge", "Crisis Management", "Observation & Investigation"],
+      workplace: "100% फील्ड वर्क और 24x7 इमरजेंसी ड्यूटी — पुलिस थाना, चौकी, सड़क गश्त और वीआईपी ड्यूटी।",
+      salary: "Constable: ₹28,000 से ₹36,000/माह (राज्य अनुसार)। Sub-Inspector (SI): ₹45,000 से ₹58,000/माह।",
+      leaves: "नियमानुसार EL और CL मिलती हैं, लेकिन इमरजेंसी सेवा होने के कारण त्योहारों या कानून-व्यवस्था की स्थिति में छुट्टी मिलना कठिन होता है।",
+      recruitment: "योग्यता: कांस्टेबल के लिए 12वीं पास, SI के लिए ग्रेजुएशन। चयन: लिखित परीक्षा, शारीरिक मानक व दक्षता परीक्षा (PST/PET) और मेडिकल।"
+    },
+    {
+      name: "पटवारी / लेखपाल (Patwari / Lekhpal)",
+      type: "State Revenue Department",
+      department: "राज्य सरकार के राजस्व विभाग (Revenue Department) के अंतर्गत जिला और तहसील प्रशासन।",
+      intro: "पटवारी ग्रामीण स्तर पर सरकार और किसानों के बीच की सबसे अहम कड़ी है, जो जमीन के रिकॉर्ड और राजस्व का हिसाब रखता है।",
+      work: [
+        "गांव की भूमि का रिकॉर्ड (खसरा, खतौनी, नक्शा) तैयार और अपडेट रखना।",
+        "जमीन की पैमाइश, नामांतरण (Mutation) और बंटवारे की रिपोर्ट तहसीलदार को भेजना।",
+        "फसलों का सर्वेक्षण (गिरदावरी) और बाढ़/सूखा जैसी आपदा में नुकसान का आकलन करना।",
+        "आय, जाति और निवास प्रमाण पत्रों के लिए क्षेत्रीय जांच रिपोर्ट लगाना।"
+      ],
+      skills: ["Land Record & Map Reading", "Computer Knowledge", "Field Survey", "Local Communication"],
+      workplace: "मिक्स जॉब — आधा समय गांव/खेतों का दौरा (फील्ड वर्क) और आधा समय तहसील कार्यालय में रिकॉर्ड तैयार करना।",
+      salary: "शुरुआती इन-हैंड सैलरी लगभग ₹30,000 से ₹42,000 प्रति माह (राज्यों के पे-मैट्रिक्स के अनुसार)।",
+      leaves: "सामान्य राज्य कर्मचारियों की तरह रविवार और राजपत्रित छुट्टियां, साथ ही नियम अनुसार EL और CL।",
+      recruitment: "योग्यता: अधिकांश राज्यों में ग्रेजुएशन + कंप्यूटर डिप्लोमा (कुछ राज्यों में 12वीं + पात्रता परीक्षा)। चयन: लिखित परीक्षा और दस्तावेज सत्यापन।"
+    },
+    {
+      name: "UPSC Civil Services (IAS, IPS, IRS)",
+      type: "All India & Central Services",
+      department: "केंद्र व राज्य सरकार के सर्वोच्च प्रशासनिक विभाग, पुलिस प्रशासन, विदेश मंत्रालय और राजस्व विभाग।",
+      intro: "UPSC देश की सबसे प्रतिष्ठित परीक्षा है, जिससे चुने गए अधिकारी जिले से लेकर केंद्र सरकार तक की नीतियों और प्रशासन का नेतृत्व करते हैं।",
+      work: [
+        "IAS (जिलाधिकारी/DM): पूरे जिले की कानून-व्यवस्था, सरकारी योजनाओं का क्रियान्वयन, राजस्व प्रशासन और आपदा प्रबंधन संभालना।",
+        "IPS (SP / पुलिस अधीक्षक): जिले या शहर में अपराध नियंत्रण, पुलिस बल का नेतृत्व और आंतरिक सुरक्षा बनाए रखना।",
+        "IRS (आयकर/कस्टम अधिकारी): देश की राजस्व नीतियों को लागू करना और आर्थिक अपराधों पर रोक लगाना।"
+      ],
+      skills: ["Leadership & Administration", "Policy Analysis", "Crisis & Decision Making", "Public Speaking & Ethics"],
+      workplace: "उच्च स्तरीय प्रशासनिक कार्यालय और नियमित फील्ड निरीक्षण (दौरे) — 24x7 जिम्मेदारी वाला पद।",
+      salary: "शुरुआती बेसिक सैलरी ₹56,100 (Level-10)। भत्तों के साथ इन-हैंड सैलरी ₹1,00,000 से ₹1,20,000+ प्रति माह (साथ में सरकारी बंगला, गाड़ी व सुरक्षा सुविधा)।",
+      leaves: "नियमानुसार 30 EL, 8 CL व राजपत्रित अवकाश मिलते हैं, परंतु आपातकालीन प्रशासनिक स्थिति में छुट्टी रद्द कर ड्यूटी पर बुलाया जा सकता है।",
+      recruitment: "योग्यता: किसी भी स्ट्रीम में ग्रेजुएशन। चयन (3 कठिन चरण): Prelims (Objective), Mains (9 लिखित पेपर) और Interview (व्यक्तित्व परीक्षण)।"
     }
   ],
   private: [
     {
       name: "Solar Technician",
       type: "Renewable Energy",
+      department: "सोलर एनर्जी इंस्टॉलेशन और मेंटेनेंस कंपनी।",
       intro: "Solar Technician सोलर पावर सिस्टम की स्थापना, जांच, रखरखाव और तकनीकी सर्विस से जुड़े कार्य करता है।",
       work: [
         "सोलर सिस्टम की स्थापना में काम करना।",
@@ -758,12 +872,15 @@ const jobs = {
         "सिस्टम की सर्विस और रखरखाव।"
       ],
       skills: ["Basic Electrical Knowledge", "Solar System Knowledge", "Multimeter Knowledge", "Technical Troubleshooting", "Electrical Safety"],
-      workplace: "Solar Installation Sites, Company Workshop और Service Locations।",
-      recruitment: "कंपनी के अनुसार योग्यता, ट्रेनिंग, अनुभव और वेतन अलग-अलग हो सकते हैं।"
+      workplace: "फील्ड वर्क — Solar Installation Sites, Company Workshop और Service Locations।",
+      salary: "शुरुआती सैलरी ₹15,000 से ₹25,000 प्रति माह (अनुभव और कंपनी के अनुसार बढ़ोतरी)।",
+      leaves: "सप्ताह में 1 दिन साप्ताहिक अवकाश और कंपनी की नीति के अनुसार वार्षिक छुट्टियां।",
+      recruitment: "कंपनी के अनुसार योग्यता (10वीं/12वीं/ITI), ट्रेनिंग और अनुभव अलग-अलग हो सकते हैं।"
     },
     {
       name: "Agriculture Field Executive",
       type: "Agriculture Sector",
+      department: "एग्री-टेक, बीज, खाद या कृषि सेवा कंपनी।",
       intro: "Agriculture Field Executive कृषि क्षेत्र में किसानों, कंपनी और कृषि उत्पादों या सेवाओं के बीच समन्वय का काम करता है।",
       work: [
         "किसानों से संपर्क और बातचीत।",
@@ -773,12 +890,15 @@ const jobs = {
         "किसानों की समस्याओं को संबंधित टीम तक पहुंचाना।"
       ],
       skills: ["Agriculture Knowledge", "Field Survey", "Communication Skills", "Data Entry", "Report Writing"],
-      workplace: "गांव, खेत, कृषि कंपनी का कार्यालय और फील्ड क्षेत्र।",
-      recruitment: "कंपनी के काम के अनुसार योग्यता, वेतन, यात्रा और फील्ड जिम्मेदारियां अलग हो सकती हैं।"
+      workplace: "मुख्यतः फील्ड वर्क — गांव, खेत, और कृषि कंपनी का क्षेत्रीय कार्यालय।",
+      salary: "शुरुआती सैलरी ₹18,000 से ₹30,000 प्रति माह + यात्रा भत्ता (TA/DA) और इंसेंटिव।",
+      leaves: "साप्ताहिक अवकाश और कंपनी के नियमों के अनुसार कैजुअल व सिक लीव।",
+      recruitment: "कंपनी के काम के अनुसार योग्यता (12वीं/B.Sc Agriculture), बाइक/यात्रा और फील्ड जिम्मेदारियां अलग हो सकती हैं।"
     },
     {
       name: "Computer Operator",
       type: "IT & Office Work",
+      department: "प्राइवेट कंपनी, कॉर्पोरेट ऑफिस या बैक-ऑफिस ऑपरेशन।",
       intro: "Computer Operator कार्यालय में कंप्यूटर आधारित रिकॉर्ड, डेटा और दस्तावेजों से जुड़े कार्य करता है।",
       work: [
         "कंप्यूटर पर डेटा एंट्री।",
@@ -788,8 +908,10 @@ const jobs = {
         "कार्यालय की डिजिटल जानकारी का रखरखाव।"
       ],
       skills: ["Computer Basics", "MS Word", "MS Excel", "Typing", "Internet Knowledge"],
-      workplace: "कंपनी, कार्यालय, संस्थान या सर्विस सेंटर।",
-      recruitment: "योग्यता, टाइपिंग की जरूरत, वेतन और जिम्मेदारियां नियोक्ता के अनुसार अलग होती हैं।"
+      workplace: "100% ऑफिस डेस्क जॉब — कंपनी कार्यालय या संस्थान।",
+      salary: "शुरुआती सैलरी ₹14,000 से ₹24,000 प्रति माह (स्किल्स और शहर के आधार पर)।",
+      leaves: "रविवार अवकाश (कुछ कंपनियों में शनिवार-रविवार) और कंपनी नीति के अनुसार छुट्टियां।",
+      recruitment: "योग्यता (12वीं/ग्रेजुएशन), टाइपिंग स्पीड और Excel ज्ञान नियोक्ता के अनुसार आवश्यक होता है।"
     }
   ]
 };
@@ -858,169 +980,73 @@ function goAbout(button) {
   window.scrollTo(0, 0);
 }
 
-function setActive(button) {
-  document.querySelectorAll("nav button").forEach(btn => {
-    btn.classList.remove("active");
-  });
-  if (button) button.classList.add("active");
+function setActive(btn) {
+  if (!btn) return;
+  document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
 }
 
-/* JOB DETAILS */
+/* SHOW JOB DETAILS */
 function showDetails(type, index) {
   const job = jobs[type][index];
   hideAllSections();
-  document.getElementById("jobDetails").style.display = "block";
-  document.getElementById("detailsContent").innerHTML = `
+  const detailsDiv = document.getElementById("detailsContent");
+  
+  const workList = job.work.map(item => <li>${item}</li>).join("");
+  const skillsList = job.skills.map(skill => <li>${skill}</li>).join("");
+
+  detailsDiv.innerHTML = `
     <span class="job-type">${job.type}</span>
     <h2>${job.name}</h2>
+    <p style="color:#526267; margin-bottom:15px;">${job.intro}</p>
 
     <div class="detail-block">
-      <h3>01. Job Introduction – नौकरी का परिचय</h3>
-      <p>${job.intro}</p>
+      <h3>🏛️ किसके अंदर काम होता है (विभाग / मंत्रालय)</h3>
+      <p>${job.department || "संबंधित सरकारी या निजी संस्थान।"}</p>
     </div>
 
     <div class="detail-block">
-      <h3>02. Actual Job Work – वास्तविक काम</h3>
-      <ul>
-        ${job.work.map(item => `<li>${item}</li>`).join("")}
-      </ul>
+      <h3>💼 वास्तव में काम क्या करना होता है?</h3>
+      <ul>${workList}</ul>
     </div>
 
     <div class="detail-block">
-      <h3>03. Required Skills – जरूरी कौशल</h3>
-      <ul>
-        ${job.skills.map(item => `<li>${item}</li>`).join("")}
-      </ul>
-    </div>
-
-    <div class="detail-block">
-      <h3>04. Workplace – कार्यस्थल</h3>
+      <h3>📍 कार्यस्थल और फील्ड वर्क (Workplace & Field Work)</h3>
       <p>${job.workplace}</p>
     </div>
 
     <div class="detail-block">
-      <h3>05. Recruitment Information – भर्ती जानकारी</h3>
-      <p>${job.recruitment}</p>
+      <h3>💰 सैलरी और भत्ते (Salary)</h3>
+      <p>${job.salary || "पद और नियमों के अनुसार।"}</p>
     </div>
 
     <div class="detail-block">
-      <h3>06. Important Note – महत्वपूर्ण सूचना</h3>
-      <p>
-        यह शुरुआती परिचय है। वास्तविक जिम्मेदारियां विभाग, राज्य, कंपनी और पद के अनुसार बदल सकती हैं। विस्तृत जानकारी आधिकारिक स्रोतों और सत्यापित कार्य अनुभव के आधार पर जोड़ी जाएगी।
-      </p>
+      <h3>🗓️ छुट्टियां और अवकाश (Leaves)</h3>
+      <p>${job.leaves || "संस्थान के नियमों के अनुसार।"}</p>
+    </div>
+
+    <div class="detail-block">
+      <h3>🛠️ जरूरी स्किल्स (Required Skills)</h3>
+      <ul>${skillsList}</ul>
+    </div>
+
+    <div class="detail-block" style="border-bottom:none;">
+      <h3>📋 योग्यता और चयन प्रक्रिया (Eligibility & Selection)</h3>
+      <p>${job.recruitment}</p>
     </div>
   `;
+
+  document.getElementById("jobDetails").style.display = "block";
   window.scrollTo(0, 0);
 }
 
-/* BACK TO JOB LIST */
 function backToJobs() {
-  document.getElementById("jobDetails").style.display = "none";
   if (currentCategory) {
-    document.getElementById(currentCategory + "Section").classList.add("show");
+    showJobs(currentCategory);
   } else {
     goHome();
   }
 }
-
-/* FIREBASE INITIALIZATION & LOGIC */
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "YOUR_DATABASE_URL",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-firebase.auth().signInAnonymously()
-.then(() => {
-  // 1. VISITOR COUNT LOGIC
-  const countRef = db.ref("websiteStats/totalVisits");
-  countRef.transaction(current => (current || 0) + 1);
-
-  countRef.on("value", snapshot => {
-    document.getElementById("visitorCount").textContent = snapshot.val() || 0;
-  });
-
-  // 2. POST COMMENT LOGIC
-  const sendBtn = document.getElementById("sendComment");
-  sendBtn.onclick = async () => {
-    const nameInput = document.getElementById("commentName");
-    const textInput = document.getElementById("commentText");
-    
-    const name = nameInput.value.trim();
-    const message = textInput.value.trim();
-
-    if (!name || !message) {
-      alert("कृपया नाम और कमेंट दोनों लिखें।");
-      return;
-    }
-
-    if (name.length > 40 || message.length > 500) {
-      alert("कमेंट या नाम तय सीमा से अधिक लंबा है।");
-      return;
-    }
-
-    try {
-      sendBtn.disabled = true;
-      sendBtn.textContent = "पोस्ट हो रहा है...";
-
-      await db.ref("comments").push({
-        name: name,
-        message: message,
-        time: firebase.database.ServerValue.TIMESTAMP
-      });
-
-      nameInput.value = "";
-      textInput.value = "";
-      alert("आपका कमेंट सफलतापूर्वक post ہو गया!");
-    } catch (error) {
-      console.error("Error posting comment:", error);
-      alert("कमेंट पोस्ट करने में त्रुटि हुई।");
-    } finally {
-      sendBtn.disabled = false;
-      sendBtn.textContent = "Comment पोस्ट करें";
-    }
-  };
-
-  // 3. SHOW COMMENTS LOGIC
-  db.ref("comments").limitToLast(50).on("value", snapshot => {
-    const list = document.getElementById("commentsList");
-    list.innerHTML = "";
-
-    if (!snapshot.exists()) {
-      list.innerHTML = "<p>अभी तक कोई कमेंट नहीं है। आप पहला कमेंट लिखें!</p>";
-      return;
-    }
-
-    snapshot.forEach(item => {
-      const data = item.val();
-
-      const card = document.createElement("div");
-      card.className = "comment-item";
-
-      const author = document.createElement("strong");
-      author.textContent = data.name || "Visitor";
-
-      const message = document.createElement("p");
-      message.textContent = data.message || "";
-
-      card.append(author, message);
-      list.prepend(card);
-    });
-  });
-
-})
-.catch(error => {
-  console.error("Firebase Auth Error:", error);
-  document.getElementById("visitorCount").textContent = "Unavailable";
-  document.getElementById("commentsList").textContent = "कमेंट लोड करने में असमर्थ। Firebase Configuration जांचें।";
-});
 </script>
 
 </body>
