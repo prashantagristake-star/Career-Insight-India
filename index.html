@@ -308,6 +308,9 @@ nav button.active {
   border-radius: 13px;
   padding: 22px;
   transition: .3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .job-card:hover {
@@ -323,6 +326,7 @@ nav button.active {
   background: #e6f3ed;
   color: #167c67;
   margin-bottom: 12px;
+  width: fit-content;
 }
 
 .job-card h3 {
@@ -577,10 +581,10 @@ footer strong {
     </div>
 
     <nav>
-      <button class="active" onclick="goHome(this)">Home</button>
-      <button onclick="showJobs('government',this)">Government</button>
-      <button onclick="showJobs('private',this)">Private</button>
-      <button onclick="goAbout(this)">About</button>
+      <button id="navHome" class="active" onclick="goHome(this)">Home</button>
+      <button id="navGovernment" onclick="showJobs('government',this)">Government</button>
+      <button id="navPrivate" onclick="showJobs('private',this)">Private</button>
+      <button id="navAbout" onclick="goAbout(this)">About</button>
     </nav>
   </div>
 </header>
@@ -924,9 +928,11 @@ function createCards(type) {
     const card = document.createElement("div");
     card.className = "job-card";
     card.innerHTML = `
-      <span class="job-type">${job.type}</span>
-      <h3>${job.name}</h3>
-      <p>${job.intro}</p>
+      <div>
+        <span class="job-type">${job.type}</span>
+        <h3>${job.name}</h3>
+        <p>${job.intro}</p>
+      </div>
       <button onclick="showDetails('${type}',${index})">
         Understand This Job →
       </button>
@@ -961,7 +967,13 @@ function showJobs(type, button) {
   currentCategory = type;
   document.getElementById(type + "Section").classList.add("show");
   window.scrollTo(0, 0);
-  setActive(button);
+  
+  if (button) {
+    setActive(button);
+  } else {
+    const navId = type === "government" ? "navGovernment" : "navPrivate";
+    setActive(document.getElementById(navId));
+  }
 }
 
 function goHome(button) {
@@ -969,14 +981,14 @@ function goHome(button) {
   document.getElementById("homeSection").style.display = "block";
   document.getElementById("community-section-container").style.display = "block";
   currentCategory = "";
-  setActive(button);
+  setActive(button || document.getElementById("navHome"));
   window.scrollTo(0, 0);
 }
 
 function goAbout(button) {
   hideAllSections();
   document.getElementById("aboutSection").style.display = "block";
-  setActive(button);
+  setActive(button || document.getElementById("navAbout"));
   window.scrollTo(0, 0);
 }
 
@@ -992,8 +1004,9 @@ function showDetails(type, index) {
   hideAllSections();
   const detailsDiv = document.getElementById("detailsContent");
   
-  const workList = job.work.map(item => <li>${item}</li>).join("");
-  const skillsList = job.skills.map(skill => <li>${skill}</li>).join("");
+  // MISTAKE FIXED HERE: Added backticks around <li> tags
+  const workList = job.work.map(item => `<li>${item}</li>`).join("");
+  const skillsList = job.skills.map(skill => `<li>${skill}</li>`).join("");
 
   detailsDiv.innerHTML = `
     <span class="job-type">${job.type}</span>
@@ -1046,6 +1059,109 @@ function backToJobs() {
   } else {
     goHome();
   }
+}
+
+/* FIREBASE INITIALIZATION & LOGIC (RESTORED) */
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "YOUR_DATABASE_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+try {
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  firebase.auth().signInAnonymously()
+  .then(() => {
+    // 1. VISITOR COUNT LOGIC
+    const countRef = db.ref("websiteStats/totalVisits");
+    countRef.transaction(current => (current || 0) + 1);
+
+    countRef.on("value", snapshot => {
+      document.getElementById("visitorCount").textContent = snapshot.val() || 0;
+    });
+
+    // 2. POST COMMENT LOGIC
+    const sendBtn = document.getElementById("sendComment");
+    sendBtn.onclick = async () => {
+      const nameInput = document.getElementById("commentName");
+      const textInput = document.getElementById("commentText");
+      
+      const name = nameInput.value.trim();
+      const message = textInput.value.trim();
+
+      if (!name || !message) {
+        alert("कृपया नाम और कमेंट दोनों लिखें।");
+        return;
+      }
+
+      if (name.length > 40 || message.length > 500) {
+        alert("कमेंट या नाम तय सीमा से अधिक लंबा है।");
+        return;
+      }
+
+      try {
+        sendBtn.disabled = true;
+        sendBtn.textContent = "पोस्ट हो रहा है...";
+
+        await db.ref("comments").push({
+          name: name,
+          message: message,
+          time: firebase.database.ServerValue.TIMESTAMP
+        });
+
+        nameInput.value = "";
+        textInput.value = "";
+        alert("आपका कमेंट सफलतापूर्वक पोस्ट हो गया!");
+      } catch (error) {
+        console.error("Error posting comment:", error);
+        alert("कमेंट पोस्ट करने में त्रुटि हुई।");
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = "Comment पोस्ट करें";
+      }
+    };
+
+    // 3. SHOW COMMENTS LOGIC
+    db.ref("comments").limitToLast(50).on("value", snapshot => {
+      const list = document.getElementById("commentsList");
+      list.innerHTML = "";
+
+      if (!snapshot.exists()) {
+        list.innerHTML = "<p>अभी तक कोई कमेंट नहीं है। आप पहला कमेंट लिखें!</p>";
+        return;
+      }
+
+      snapshot.forEach(item => {
+        const data = item.val();
+
+        const card = document.createElement("div");
+        card.className = "comment-item";
+
+        const author = document.createElement("strong");
+        author.textContent = data.name || "Visitor";
+
+        const message = document.createElement("p");
+        message.textContent = data.message || "";
+
+        card.append(author, message);
+        list.prepend(card);
+      });
+    });
+
+  })
+  .catch(error => {
+    console.error("Firebase Auth Error:", error);
+    document.getElementById("visitorCount").textContent = "Unavailable";
+    document.getElementById("commentsList").textContent = "कमेंट लोड करने में असमर्थ। अपनी Firebase Config डिटेल्स डालें।";
+  });
+} catch (err) {
+  console.error("Firebase Init Error:", err);
 }
 </script>
 
